@@ -1,7 +1,9 @@
 package com.workintech.twitter.exception;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@Getter
 public class UserException extends RuntimeException {
 
     private HttpStatus httpStatus;
