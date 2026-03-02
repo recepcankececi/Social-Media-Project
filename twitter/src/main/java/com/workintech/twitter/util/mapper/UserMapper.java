@@ -21,12 +21,15 @@ public class UserMapper {
     private RoleRepository roleRepository;
 
     public UserResponseDto toResponseDto(User user) {
-        return new UserResponseDto(user.getUsername(), user.getEmail(), user.getRoles());
+        List<String> roleNames = user.getRoles().stream()
+                .map(Role::getName)
+                .toList();
+        return new UserResponseDto(user.getUsername(), user.getEmail(), roleNames);
     }
 
     public User toEntity(UserRequestDto userRequestDto){
         User user = new User();
-        user.setUsername(userRequestDto.name());
+        user.setUsername(userRequestDto.username());
         user.setEmail(userRequestDto.email());
         user.setPassword(userRequestDto.password());
         user.setRoles(convertRoleNamesToRoles(userRequestDto.roles()));
@@ -34,7 +37,7 @@ public class UserMapper {
     }
 
     public void UpdateEntity(User user, UserPatchRequestDto userPatchRequestDto){
-        user.setUsername(userPatchRequestDto.name());
+        user.setUsername(userPatchRequestDto.username());
         user.setEmail(userPatchRequestDto.email());
         user.setPassword(userPatchRequestDto.password());
         user.setRoles(convertRoleNamesToRoles(userPatchRequestDto.roles()));
