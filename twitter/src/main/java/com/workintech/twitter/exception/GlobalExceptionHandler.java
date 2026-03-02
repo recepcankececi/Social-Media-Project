@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
         userErrorResponse.setMessage(userException.getMessage());
         userErrorResponse.setTimestamp(System.currentTimeMillis());
         userErrorResponse.setLocalDateTime(LocalDateTime.now());
-        return new ResponseEntity<>(userException.getHttpStatus());
+        return new ResponseEntity<>(userErrorResponse, userException.getHttpStatus());
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)

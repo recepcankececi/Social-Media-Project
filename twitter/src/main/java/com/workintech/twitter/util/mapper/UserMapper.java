@@ -4,7 +4,9 @@ import com.workintech.twitter.dto.request.UserPatchRequestDto;
 import com.workintech.twitter.dto.request.UserRequestDto;
 import com.workintech.twitter.dto.response.UserResponseDto;
 import com.workintech.twitter.entity.User;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserMapper {
 
     public UserResponseDto toResponseDto(User user) {
